@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLNET | Acesso Restrito</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            color: #e7edf5;
+            background: #080f1b;
+        }
+        .login {
+            width: 90%;
+            max-width: 410px;
+            padding: 35px;
+            background: #111d2d;
+            border: 1px solid #34445b;
+            border-top: 4px solid #4c8bd8;
+            border-radius: 8px;
+        }
+        .symbol {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        h1 { text-align: center; font-size: 24px; }
+        .subtitle {
+            text-align: center;
+            color: #8fa3bc;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin: 16px 0 7px;
+            font-size: 13px;
+            color: #b7c6d9;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #091321;
+            color: white;
+            border: 1px solid #34445b;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            color: white;
+            background: #245da0;
+            border: 0;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #3277c4; }
+        .warning {
+            margin-top: 22px;
+            padding: 10px;
+            background: #1b293b;
+            color: #9eb0c7;
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        footer {
+            margin-top: 20px;
+            color: #647890;
+            font-size: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="login">
+        <div class="symbol">⬟</div>
+        <h1>POLNET</h1>
+        <div class="subtitle">SISTEMA POLICIAL DE INVESTIGAÇÃO</div>
+
+        <form action="/login" method="post">
+            <label for="matricula">Matrícula do agente</label>
+            <input type="text" id="matricula" name="matricula"
+                   placeholder="Digite sua matrícula" required>
+
+            <label for="senha">Senha de acesso</label>
+            <input type="password" id="senha" name="senha"
+                   placeholder="Digite sua senha" required>
+
+            <button type="submit">ACESSAR SISTEMA</button>
+        </form>
+
+        <div class="warning">
+            ACESSO RESTRITO<br>
+            Sistema destinado exclusivamente a agentes autorizados.
+        </div>
+
+        <footer>POLNET · TERMINAL DE INVESTIGAÇÃO · VERSÃO 4.8</footer>
+    </main>
+</body>
+</html>

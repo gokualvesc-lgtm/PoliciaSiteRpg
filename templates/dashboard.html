@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLNET | Painel</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0a1220;
+            color: #e7edf5;
+        }
+        header {
+            padding: 20px 6%;
+            background: #111d2d;
+            border-bottom: 1px solid #304057;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        header strong { font-size: 20px; }
+        header span { color: #8fa3bc; font-size: 12px; }
+        main { max-width: 1100px; margin: auto; padding: 35px 20px; }
+        h1 { margin-bottom: 8px; }
+        .muted { color: #8fa3bc; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .stat, .panel {
+            padding: 22px;
+            background: #111d2d;
+            border: 1px solid #2d4058;
+            border-radius: 6px;
+        }
+        .stat small { color: #91a7c1; }
+        .number { font-size: 30px; margin-top: 12px; }
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+        .action {
+            display: block;
+            padding: 25px;
+            color: #e7edf5;
+            background: #14243a;
+            border: 1px solid #344d6d;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .action:hover { background: #1b3150; }
+        .action h2 { font-size: 18px; }
+        .action p { color: #9eb0c7; line-height: 1.5; font-size: 13px; }
+        .tag {
+            display: inline-block;
+            padding: 5px 8px;
+            background: #4b3022;
+            color: #ffbd8a;
+            font-size: 11px;
+            border-radius: 3px;
+        }
+        .case-link { color: #78b4ff; }
+        footer { margin-top: 35px; color: #657a94; font-size: 11px; }
+    </style>
+</head>
+<body>
+<header>
+    <strong>⬟ POLNET</strong>
+    <span>TERMINAL DE INVESTIGAÇÃO POLICIAL</span>
+</header>
+
+<main>
+    <p class="muted">PAINEL DO AGENTE / VISÃO GERAL</p>
+    <h1>Central de operações</h1>
+    <p class="muted">Bem-vindo ao sistema interno de investigação.</p>
+
+    <section class="stats">
+        <div class="stat">
+            <small>Casos ativos</small>
+            <div class="number">03</div>
+        </div>
+        <div class="stat">
+            <small>Casos disponíveis</small>
+            <div class="number">03</div>
+        </div>
+        <div class="stat">
+            <small>Investigações prioritárias</small>
+            <div class="number">01</div>
+        </div>
+    </section>
+
+    <h2>Ferramentas de investigação</h2>
+    <section class="actions">
+        <a class="action" href="/casos">
+            <h2>▤ Casos disponíveis</h2>
+            <p>Consulte os arquivos liberados para investigação e visualize os detalhes de cada ocorrência.</p>
+            <span class="case-link">ACESSAR ARQUIVOS →</span>
+        </a>
+
+        <a class="action" href="/investigacao-pessoal">
+            <h2>⌕ Investigação pessoal</h2>
+            <p>Pesquise um CPF e consulte o histórico cadastral disponível para a investigação.</p>
+            <span class="case-link">ABRIR CONSULTA →</span>
+        </a>
+
+        <a class="action" href="/caso-digifun">
+            <h2>▣ Caso DigiFun</h2>
+            <p>Reabertura de investigação envolvendo uma antiga rede de entretenimento infantil.</p>
+            <span class="tag">CASO PRIORITÁRIO</span>
+        </a>
+    </section>
+
+    <section class="panel" style="margin-top:25px">
+        <h2>Última atualização</h2>
+        <p class="muted">
+            Novos documentos foram anexados ao arquivo DigiFun.
+            A localização da antiga fábrica permanece sem confirmação
+            nos registros oficiais disponíveis.
+        </p>
+    </section>
+
+    <footer>POLNET · DOCUMENTOS INTERNOS · ACESSO CONTROLADO</footer>
+</main>
+</body>
+</html>

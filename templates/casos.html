@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLNET | Casos disponíveis</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #0a1220; color: #e7edf5; }
+        header { padding: 20px 6%; background: #111d2d; border-bottom: 1px solid #304057; }
+        header a { color: #80b7ff; text-decoration: none; }
+        main { max-width: 1000px; margin: auto; padding: 30px 20px; }
+        .muted { color: #8fa3bc; }
+        .case {
+            margin: 18px 0;
+            padding: 23px;
+            background: #111d2d;
+            border: 1px solid #2d4058;
+            border-left: 4px solid #4c8bd8;
+            border-radius: 5px;
+        }
+        .case h2 { margin-top: 0; }
+        .meta { color: #91a7c1; font-size: 12px; line-height: 1.8; }
+        .status {
+            display: inline-block;
+            padding: 5px 8px;
+            background: #203b30;
+            color: #9ee0b5;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+        .priority { background: #4b3022; color: #ffbd8a; }
+        .button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: #245da0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .button:hover { background: #3277c4; }
+    </style>
+</head>
+<body>
+<header>
+    <strong>POLNET</strong>
+    <span style="float:right"><a href="/dashboard">← Voltar ao painel</a></span>
+</header>
+
+<main>
+    <p class="muted">ARQUIVO CENTRAL / CASOS LIBERADOS</p>
+    <h1>Casos disponíveis</h1>
+    <p class="muted">Selecione um arquivo para consultar as informações registradas.</p>
+
+    <section class="case">
+        <span class="status priority">PRIORIDADE ALTA</span>
+        <h2>DF-2010-0813 — Investigação DigiFun</h2>
+        <p>
+            Reabertura de investigação relacionada à antiga empresa DigiFun,
+            ao desaparecimento de crianças e ao fechamento de suas instalações.
+        </p>
+        <div class="meta">
+            Último evento relevante: 13/08/2010<br>
+            Situação: investigação reaberta<br>
+            Arquivos anexados: contratos, registros comerciais e depoimentos
+        </div>
+        <a class="button" href="/caso-digifun">ABRIR CASO</a>
+    </section>
+
+    <section class="case">
+        <span class="status">EM ANÁLISE</span>
+        <h2>AR-2009-0421 — Equipamentos abandonados</h2>
+        <p>
+            Relatos sobre equipamentos industriais encontrados em um imóvel
+            desativado. A origem dos objetos ainda não foi confirmada.
+        </p>
+        <div class="meta">
+            Situação: aguardando análise documental<br>
+            Arquivos anexados: 4
+        </div>
+        <a class="button" href="/casos">CONSULTAR ARQUIVO</a>
+    </section>
+
+    <section class="case">
+        <span class="status">EM ANÁLISE</span>
+        <h2>OC-2012-1107 — Ocorrências arquivadas</h2>
+        <p>
+            Compilação de ocorrências antigas com registros incompletos e
+            informações pendentes de confirmação.
+        </p>
+        <div class="meta">
+            Situação: revisão pendente<br>
+            Arquivos anexados: 6
+        </div>
+        <a class="button" href="/casos">CONSULTAR ARQUIVO</a>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLNET | Investigação pessoal</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #0a1220; color: #e7edf5; }
+        header { padding: 20px 6%; background: #111d2d; border-bottom: 1px solid #304057; }
+        header a { color: #80b7ff; text-decoration: none; }
+        main { max-width: 900px; margin: auto; padding: 30px 20px; }
+        .muted { color: #8fa3bc; }
+        .panel {
+            padding: 24px;
+            margin-top: 20px;
+            background: #111d2d;
+            border: 1px solid #2d4058;
+            border-radius: 6px;
+        }
+        label { display: block; margin-bottom: 9px; color: #b7c6d9; font-size: 13px; }
+        input {
+            width: 100%;
+            padding: 13px;
+            color: white;
+            background: #091321;
+            border: 1px solid #34445b;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px 18px;
+            background: #245da0;
+            color: white;
+            border: 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #0c1726;
+            border: 1px dashed #435671;
+            border-radius: 5px;
+        }
+        .result h2 { font-size: 17px; }
+        .note { font-size: 12px; color: #8fa3bc; line-height: 1.6; }
+    </style>
+</head> 
+<body>
+<header>
+    <strong>POLNET</strong>
+    <span style="float:right"><a href="/dashboard">← Voltar ao painel</a></span>
+</header>
+
+<main>
+    <p class="muted">FERRAMENTAS / CONSULTA CADASTRAL</p>
+    <h1>Investigação pessoal</h1>
+    <p class="muted">
+        Consulte os registros associados a uma pessoa, conforme as permissões
+        e os dados disponíveis no sistema.
+    </p>
+
+    <section class="panel">
+        <h2>Pesquisa por CPF</h2>
+        <form action="/investigacao-pessoal" method="post">
+            <label for="cpf">CPF para consulta</label>
+            <input
+                type="text"
+                id="cpf"
+                name="cpf"
+                placeholder="Digite o CPF"
+                autocomplete="off"
+                required
+            >
+            <button type="submit">PESQUISAR REGISTROS</button>
+        </form>
+        <p class="note">
+            As consultas devem ter autorização e finalidade legítima.
+            Os resultados dependem dos registros disponíveis ao agente.
+        </p>
+    </section>
+
+    <section class="result">
+        <h2>Resultado da consulta</h2>
+        <!-- Seu Flask pode exibir aqui os dados retornados pela pesquisa. -->
+        <p class="muted">Aguardando uma consulta...</p>
+        <p class="note">
+            {{consulta}}
+        </p>
+    </section>
+</main>
+</body>
+</html>
