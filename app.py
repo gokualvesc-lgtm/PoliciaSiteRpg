@@ -49,7 +49,7 @@ def casos():
 
 @app.route("/caso-digifun")
 def caso_digifun():
-    return render_template("casoDigifun.html")
+    return render_template("casoDigifunAtt.html")
 
 @app.route("/investigacao-pessoal", methods=["POST", "GET"])
 def investigacao():
