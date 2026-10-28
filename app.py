@@ -7,7 +7,7 @@ app.secret_key = "ajakhflkqhfa"
 infos = {"322.167.975-22": "Nome: Ana Luchsinger ---- Analise Pessoal: Fundadora da empresa Digifun, nenhum caso arquivado contra.  Estado Atual: Desaparecida",
          "875.133.988-11": "Nome: Leandro Beckman ---- Analise Pessoal: Fundador da empresa NeuroPlay foi indiciado por Ocultação de Cadaver, Ossos foram encontrados em sua Mala. Estado Atual: Morto",
          "877.552.132-05": "Nome: Robert Pattinson ---- Analise Pessoal: Fundador da empresa DigiFun, Indiciado por ocultação de patrimonio, mas o caso não foi para frente. Estado atual: Desaparecido",
-         "066.241.555-67": "Nome: Klever Dawne ---- Analise Pessoal: Antigo Funcionario da Empresa DigiFun, Cursou faculdade em Ciência, Biologia Humana. Nenhum caso Arquivado contra. Data de Nascimento: 09/12/1988 Estado Atual: Vivo"
+         "066.241.555-67": "Nome: Klever Dawne ---- Analise Pessoal: Antigo Funcionario da Empresa DigiFun, Cursou faculdade em Ciência, Biologia Humana. Nenhum caso Arquivado contra. Data de Nascimento: 09/12/1988 Estado Atual: Vivo."
 
          }
 
