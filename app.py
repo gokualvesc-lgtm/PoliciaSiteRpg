@@ -1,8 +1,19 @@
 from flask import Flask, render_template, url_for, redirect, request, session
 
-
 app = Flask(__name__)
 app.secret_key = "ajakhflkqhfa"
+
+import os
+import psycopg2
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+def conectar():
+    return psycopg2.connect(DATABASE_URL)
 
 infos = {"322.167.975-22": "Nome: Ana Luchsinger ---- Analise Pessoal: Fundadora da empresa Digifun, nenhum caso arquivado contra.  Estado Atual: Desaparecida",
          "875.133.988-11": "Nome: Leandro Beckman ---- Analise Pessoal: Fundador da empresa NeuroPlay foi indiciado por Ocultação de Cadaver, Ossos foram encontrados em sua Mala. Estado Atual: Morto",
@@ -72,6 +83,54 @@ def investigacao():
 
 
     return render_template("investigacao.html", consulta="Nada Consultado!")
+
+
+
+@app.route("/anotacoes", methods=["POST", "GET"])
+def anotacoes():
+
+    conn = conectar()
+    cursor = conn.cursor()
+
+    try:
+        if request.method == "POST":
+
+            title = request.form.get("title")
+            category = request.form.get("Categoria")
+            caso = request.form.get("Caso")
+            priority = request.form.get("priority")
+            anotacao = request.form.get("anotacao")
+
+            cursor.execute("""
+                INSERT INTO "Anotacoes"
+                ("Title", "Category", "CasoNumber", "Priority", "Anotacao")
+                VALUES (%s, %s, %s, %s, %s)
+            """, (title, category, caso, priority, anotacao))
+
+            conn.commit()
+
+        cursor.execute("""
+            SELECT "id", "Title", "Category", "CasoNumber",
+                   "Priority", "Anotacao"
+            FROM "Anotacoes"
+            ORDER BY "id" DESC
+        """)
+
+        anotacoes = cursor.fetchall()
+
+        return render_template(
+            "anotacoes.html",
+            anotacoes=anotacoes
+        )
+
+    except Exception as e:
+        conn.rollback()
+        print("ERRO:", repr(e))
+        raise
+
+    finally:
+        cursor.close()
+        conn.close()
 
 
 if __name__ == "__main__":

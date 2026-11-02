@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POLNET | Anotações policiais</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0a1220;
+    color:#e7edf5
+}
+
+header{
+    padding:20px 6%;
+    background:#111d2d;
+    border-bottom:1px solid #304057;
+    display:flex;
+    justify-content:space-between;
+    gap:15px
+}
+
+header a{color:#80b7ff;text-decoration:none}
+
+main{max-width:1200px;margin:auto;padding:30px 20px}
+
+.muted,.meta{color:#8fa3bc}
+.eyebrow{font-size:11px;letter-spacing:1.4px}
+
+.layout{
+    display:grid;
+    grid-template-columns:minmax(270px,370px) 1fr;
+    gap:18px;
+    margin-top:24px;
+    align-items:start
+}
+
+.panel,.note{
+    background:#111d2d;
+    border:1px solid #2d4058;
+    border-radius:6px;
+    padding:21px
+}
+
+label{
+    display:block;
+    color:#b7c6d9;
+    font-size:12px;
+    margin:14px 0 7px
+}
+
+input,select,textarea{
+    width:100%;
+    padding:11px;
+    background:#091321;
+    color:#e7edf5;
+    border:1px solid #34445b;
+    border-radius:4px;
+    font:inherit
+}
+
+textarea{
+    min-height:145px;
+    resize:vertical;
+    line-height:1.5
+}
+
+button{
+    padding:10px 14px;
+    border:0;
+    border-radius:4px;
+    background:#245da0;
+    color:white;
+    cursor:pointer;
+    font-weight:bold
+}
+
+button:hover{filter:brightness(1.15)}
+
+.actions,.toolbar{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:14px
+}
+
+.toolbar{margin:0 0 14px}
+.toolbar>*{flex:1;min-width:145px}
+
+.note{
+    margin-bottom:12px;
+    padding:17px
+}
+
+.note-title{
+    font-weight:bold;
+    font-size:16px;
+    margin:0 0 10px
+}
+
+.meta{
+    font-size:11px;
+    line-height:1.8
+}
+
+.bodytext{
+    white-space:pre-wrap;
+    line-height:1.6;
+    color:#c8d4e3;
+    font-size:13px;
+    margin:14px 0
+}
+
+.tag{
+    display:inline-block;
+    padding:4px 7px;
+    border-radius:3px;
+    background:#203b30;
+    color:#9ee0b5;
+    font-size:10px;
+    font-weight:bold
+}
+
+.high{
+    background:#4b3022;
+    color:#ffbd8a
+}
+
+.confidential{
+    background:#492d3c;
+    color:#f5a9ca
+}
+
+.empty{
+    padding:35px;
+    text-align:center;
+    border:1px dashed #435671;
+    border-radius:5px;
+    color:#8fa3bc
+}
+
+.small,footer{
+    font-size:11px;
+    color:#7f93ac;
+    line-height:1.5
+}
+
+footer{margin-top:30px}
+
+@media(max-width:720px){
+    .layout{grid-template-columns:1fr}
+    header{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <strong>⬟ POLNET / REGISTROS INTERNOS</strong>
+    <a href="/dashboard">← Voltar ao painel</a>
+</header>
+
+<main>
+
+<p class="eyebrow">FERRAMENTAS / REGISTRO DE AGENTE</p>
+
+<h1>Anotações policiais</h1>
+
+<p class="muted">
+Registre observações de campo, informações recebidas e pontos que precisam ser verificados.
+</p>
+
+<div class="layout">
+
+<!-- FORMULÁRIO -->
+<section class="panel">
+
+    <h2>Nova anotação</h2>
+
+    <form id="form" method="POST" action="{{ url_for('anotacoes') }}">
+
+        <label for="title">Título</label>
+        <input
+            id="title"
+            maxlength="100"
+            placeholder="Ex.: Observação na filial"
+            name="title"
+            required
+        >
+
+        <label for="caseRef">Caso / protocolo</label>
+        <input
+            id="caseRef"
+            maxlength="50"
+            placeholder="Ex.: DF-2010-0813"
+            name="Caso"
+        >
+
+        <label for="category">Categoria</label>
+
+        <select id="category" name="Categoria">
+            <option>Observação de campo</option>
+            <option>Depoimento</option>
+            <option>Documento</option>
+            <option>Pista</option>
+            <option>Pendente de verificação</option>
+            <option>Outros</option>
+        </select>
+
+        <label for="priority">Classificação</label>
+
+        <select id="priority" name="priority">
+            <option value="normal">REGISTRO COMUM</option>
+            <option value="high">ATENÇÃO</option>
+            <option value="confidential">CONFIDENCIAL</option>
+        </select>
+
+        <label for="content">Anotação</label>
+
+        <textarea
+            id="content"
+            placeholder="Registre aqui as informações..."
+            name="anotacao"
+            required
+        ></textarea>
+
+        <div class="actions">
+            <button type="submit" id="save">
+                SALVAR REGISTRO
+            </button>
+        </div>
+
+    </form>
+
+    <p class="small">
+        Os registros são armazenados no banco de dados central do POLNET.
+    </p>
+
+</section>
+
+
+<!-- LISTAGEM DE ANOTAÇÕES -->
+<section>
+
+    <div class="toolbar">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Pesquisar anotações..."
+        >
+
+        <select id="filter">
+            <option value="all">Todas as categorias</option>
+            <option>Observação de campo</option>
+            <option>Depoimento</option>
+            <option>Documento</option>
+            <option>Pista</option>
+            <option>Pendente de verificação</option>
+            <option>Outros</option>
+        </select>
+
+    </div>
+
+    <div style="margin-bottom:15px">
+        <h2 style="margin:0">Registros encontrados</h2>
+        <span class="small">
+            Total: {{ anotacoes|length if anotacoes else 0 }} registro(s)
+        </span>
+    </div>
+
+    <div id="list">
+
+        {% for item in anotacoes %}
+
+        <article
+            class="note"
+            data-category="{{ item[2] }}"
+            data-search="{{ (item[1] ~ ' ' ~ item[2] ~ ' ' ~ (item[3] or '') ~ ' ' ~ item[5])|lower }}"
+        >
+
+            <h3 class="note-title">
+                {{ item[1] }}
+            </h3>
+
+            <div class="meta">
+                <span>{{ item[2] }}</span>
+                &nbsp;|&nbsp;
+                Caso: {{ item[3] or 'Não informado' }}
+                &nbsp;|&nbsp;
+                Registro #{{ item[0] }}
+            </div>
+
+            <div style="margin-top:12px">
+
+                {% if item[4] == 'high' %}
+
+                    <span class="tag high">ATENÇÃO</span>
+
+                {% elif item[4] == 'confidential' %}
+
+                    <span class="tag confidential">CONFIDENCIAL</span>
+
+                {% else %}
+
+                    <span class="tag">REGISTRO COMUM</span>
+
+                {% endif %}
+
+            </div>
+
+            <p class="bodytext">{{ item[5] }}</p>
+
+        </article>
+
+        {% else %}
+
+        <div class="empty" id="empty">
+            <h3>Nenhuma anotação registrada</h3>
+            <p>Os registros cadastrados aparecerão aqui.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="empty" id="noResults" hidden>
+        Nenhum registro corresponde à pesquisa.
+    </div>
+
+</section>
+
+</div>
+
+<footer>
+    POLNET · ANOTAÇÕES DE INVESTIGAÇÃO · ACESSO CONTROLADO
+</footer>
+
+</main>
+
+<script>
+
+// Pesquisa e filtro das anotações
+
+const search = document.getElementById("search");
+const filter = document.getElementById("filter");
+const notes = document.querySelectorAll(".note");
+const noResults = document.getElementById("noResults");
+
+function filtrarAnotacoes(){
+
+    const termo = search.value.toLowerCase().trim();
+    const categoria = filter.value;
+
+    let encontrados = 0;
+
+    notes.forEach(note => {
+
+        const texto = note.dataset.search || "";
+        const cat = note.dataset.category || "";
+
+        const correspondeTexto = texto.includes(termo);
+
+        const correspondeCategoria =
+            categoria === "all" || cat === categoria;
+
+        const mostrar = correspondeTexto && correspondeCategoria;
+
+        note.style.display = mostrar ? "block" : "none";
+
+        if(mostrar){
+            encontrados++;
+        }
+
+    });
+
+    noResults.hidden = encontrados !== 0;
+
+}
+
+search.addEventListener("input", filtrarAnotacoes);
+filter.addEventListener("change", filtrarAnotacoes);
+
+</script>
+
+</body>
+</html>
